@@ -1,0 +1,37 @@
+[
+  {
+    "word": "ReactJS",
+    "definition": "React is currently the most popular javascript front-end framework. Developed by Facebook in 2013, React is used to build interactive user interfaces. "
+
+  },{
+    "word": "Angular",
+    "definition": "A component-based framework for building scalable web applications. A collection of well-integrated libraries that cover a wide variety of features, including routing, forms management, client-server communication, and more. A suite of developer tools to help you develop, build, test, and update your code. With Angular, you're taking advantage of a platform that can scale from single-developer projects to enterprise-level applications. Angular is designed to make updating as straightforward as possible, so take advantage of the latest developments with a minimum of effort."
+
+  },{
+    "word": "Docker",
+    "definition": "Docker is a software platform that allows you to build, test, and deploy applications quickly. Docker packages software into standardized units called containers that have everything the software needs to run including libraries, system tools, code, and runtime. Using Docker, you can quickly deploy and scale applications into any environment and know your code will run."
+
+  },{
+    "word": "Kubernetes",
+    "definition":"Kubernetes is a portable, extensible, open-source platform for managing containerized workloads and services."
+
+  },{
+    "word": "Rust",
+    "definition": "Rust is a statically-typed programming language designed for performance and safety, especially safe concurrency and memory management."
+  },{
+    "word": "TensorFlow",
+    "definition": "TensorFlow is an end-to-end open source platform for machine learning. It has a comprehensive, flexible ecosystem of tools, libraries and community resources that lets researchers push the state-of-the-art in ML and developers easily build and deploy ML powered applications."
+  },{
+    "word": "Solidity",
+    "definition": "Solidity is a statically-typed curly-braces programming language designed for developing smart contracts that run on Ethereum."
+  },{
+    "word": "Laravel",
+    "definition": "Laravel is a PHP framework with expressive, elegant syntax. It is the most popular PHP framework."
+  },{
+    "word": "jQuery",
+    "definition": "jQuery is a fast, small, and feature-rich JavaScript library. It makes things like HTML document traversal and manipulation, event handling, animation, and AJAX much simpler with an easy-to-use API that works across a multitude of browsers. With a combination of versatility and extensibility, jQuery has changed the way that millions of people write JavaScript."
+  },{
+    "words": "AJAX",
+    "definition": "Ajax stands for Asynchronous Javascript And XML. Ajax is just a means of loading data from the server and selectively updating parts of a web page without reloading the whole page."
+  }
+]
