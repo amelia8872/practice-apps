@@ -3,9 +3,14 @@ const express = require("express");
 const path = require("path");
 const sessionHandler = require("./middleware/session-handler");
 const logger = require("./middleware/logger");
+// const form1controller = require('./controllers/form1controller');
+// const form2controller = require('./controllers/form2controller');
+// const form3controller = require('./controllers/form3controller');
 
 // Establishes connection to the database on server start
 const db = require("./db");
+const {create} = require("./db");
+
 
 const app = express();
 
@@ -29,6 +34,17 @@ app.use(express.json());
  *
  *
  */
+app.post('/api/checkout', (req, res) => {
+  console.log('req.body from server',req.body);
+  create(req.body)
+    .then((res) => {
+      console.log('res after request', res);
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+
+})
 
 
 

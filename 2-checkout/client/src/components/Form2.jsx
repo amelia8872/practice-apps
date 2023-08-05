@@ -1,6 +1,9 @@
 import React, {useState} from "react";
 
-const Form2 = ({prevStep, nextStep}) => {
+
+
+
+const Form2 = ({prevStep, nextStep,handleChange}) => {
   return(
     <div className="form2">
       <h1>Shipping Address</h1>
@@ -9,35 +12,40 @@ const Form2 = ({prevStep, nextStep}) => {
       <input
       type="text"
       placeholder="line1"
-      // value="name"
+      name="address_line1"
+      onChange={handleChange}
       />
 
       <h3>line2:</h3>
       <input
       type="text"
       placeholder="line2"
-      // value="email"
+      name="address_line2"
+      onChange={handleChange}
       />
 
       <h2>city:</h2>
       <input
       type="text"
       placeholder="city"
-      // value="password"
+      name="city"
+      onChange={handleChange}
       />
 
       <h2>state:</h2>
       <input
       type="text"
       placeholder="state"
-      // value="password"
+      name="state"
+      onChange={handleChange}
       />
 
       <h2>zipcode:</h2>
       <input
       type="text"
       placeholder="zipcode"
-      // value="password"
+      name="zipcode"
+      onChange={handleChange}
       />
       <br></br>
 

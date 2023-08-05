@@ -5,6 +5,7 @@ import Form1 from './components/Form1.jsx';
 import Form2 from './components/Form2.jsx';
 import Form3 from './components/Form3.jsx';
 import Confirmation from './components/Confirmation.jsx';
+import axios from 'axios';
 
 
 
@@ -15,37 +16,60 @@ const App = () => {
     name: '',
     email: '',
     password: '',
-    address: '',
+    address_line1: '',
+    address_line2:'',
     city: '',
     state: '',
-    zip: '',
-    phone: '',
-    cardNumber: '',
-    expiryDate: '',
+    zipcode: '',
+    phone_number: '',
+    creditcard: '',
+    expirydate: '',
     cvv: '',
-    billingZip: '',
+    billingzip: ''
   });
 
   const nextStep = () => setStep(step + 1);
   const prevStep = () => setStep(step - 1);
 
+  const handleChange = (event) => {
+    // console.log(event.target.name);
+    // console.log(event.target.value);
+    const {name, value} = event.target;
+    setFormData({...formData, [name]:value})
+    // console.log(formData)
+  }
+
+  const handleSubmit = () => {
+    axios.post('/api/checkout', formData)
+      .then((response) => {
+        console.log('response.data from client',response.data);
+      })
+      .catch((err) => {
+        console.log('Error checkout', err);
+      })
+
+    setStep(1);
+  }
+
+
+
   const getStepComponent = () => {
     switch (step) {
       case 1:
         return (
-          <Form1 nextStep={nextStep} />
+          <Form1 nextStep={nextStep} handleChange={handleChange} />
         );
       case 2:
         return (
-          <Form2 prevStep={prevStep} nextStep={nextStep} />
+          <Form2 prevStep={prevStep} nextStep={nextStep} handleChange={handleChange} />
         );
       case 3:
         return (
-          <Form3 prevStep={prevStep} nextStep={nextStep} />
+          <Form3 prevStep={prevStep} nextStep={nextStep} handleChange={handleChange} />
         );
       case 4:
         return (
-          <Confirmation prevStep={prevStep} setStep={setStep} />
+          <Confirmation prevStep={prevStep} setStep={setStep} formData={formData} handleSubmit={handleSubmit}/>
         );
     }
 

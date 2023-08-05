@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 
-const Form1 = ({nextStep}) => {
+
+
+const Form1 = ({nextStep, handleChange}) => {
   return(
     <div className="form1">
       <h1>Account Create</h1>
@@ -8,21 +10,25 @@ const Form1 = ({nextStep}) => {
       <input
       type="text"
       placeholder="Name"
-      // value="name"
+      name="name"
+      onChange={handleChange}
       />
 
       <h2>Email</h2>
       <input
       type="email"
       placeholder="Email"
-      // value="email"
+      name="email"
+      onChange={handleChange}
       />
 
       <h2>Password</h2>
       <input
       type="password"
       placeholder="Password"
-      // value="password"
+      name="password"
+      onChange={handleChange}
+
       />
       <br></br>
 

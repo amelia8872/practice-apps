@@ -1,39 +1,41 @@
 import React from "react";
 
 
-const Confirmation = ({prevStep}) => {
+const Confirmation = ({prevStep,formData,handleSubmit}) => {
   return(
     <div className='confirmation'>
-    <span>name</span>
+    <span>name: {formData.name}</span>
     <br></br>
-    <span>email</span>
+    <span>email: {formData.email}</span>
     <br></br>
-    <span>password</span>
+    <span>password: {formData.password}</span>
     <br></br>
-    <span>address</span>
+    <span>address line1: {formData.address_line1}</span>
     <br></br>
-    <span>city</span>
+    <span>address line2: {formData.address_line2}</span>
     <br></br>
-    <span>state</span>
+    <span>city: {formData.city}</span>
     <br></br>
-    <span>zip</span>
+    <span>state: {formData.state}</span>
     <br></br>
-    <span>phone</span>
+    <span>zip: {formData.zipcode}</span>
     <br></br>
-    <span>cardNumber</span>
+    <span>phone: {formData.phone_number}</span>
     <br></br>
-    <span>expiryDate</span>
+    <span>cardNumber: {formData.creditcard}</span>
     <br></br>
-    <span>cvv</span>
+    <span>expiryDate: {formData.expirydate}</span>
     <br></br>
-    <span>billingZip</span>
+    <span>cvv: {formData.cvv}</span>
+    <br></br>
+    <span>billingZip: {formData.billingzip}</span>
 
     <br></br>
 
     <br></br>
     <button onClick={prevStep}>Previous</button>
     <br></br>
-    <button>Purchase</button>
+    <button onClick={handleSubmit}>Purchase</button>
 
 
 
