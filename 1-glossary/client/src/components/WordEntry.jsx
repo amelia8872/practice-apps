@@ -1,10 +1,12 @@
 import React from "react";
 import {useState} from "react";
 
-const WordEntry = ({word}) => {
+const WordEntry = ({word, handleDelete, editWord}) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedWord, setEditedWord] = useState(word.word);
   const [editedDef, setEditedDef] = useState(word.definition);
+
+
 
 
 
@@ -14,8 +16,16 @@ const WordEntry = ({word}) => {
       {isEditing ? (
         <>
         <input type='text'  placeholder='Enter the word: ' onChange={(e) => {setEditedWord(e.target.value)}}></input>
-        <input type='text'  placeholder='Enter the definition: ' onChange={(e) => {setEditedDef(e.target.value)}}></input>
-        <button onClick={() => {handle}}>Save</button>
+        <br></br>
+        <textarea type='text'  placeholder='Enter the definition: ' onChange={(e) => {setEditedDef(e.target.value)}}></textarea>
+        <button onClick={() => {
+          editWord(word._id, {word: editedWord, definition: editedDef});
+          setEditedWord('');
+          setEditedDef('');
+          setIsEditing(false)
+          }}>
+            Save
+        </button>
         </>
       ):(
         <>
@@ -24,7 +34,7 @@ const WordEntry = ({word}) => {
         <span>{word.definition}</span>
         <br></br>
         <button onClick={() => {setIsEditing(true)}}>Edit</button>
-        <button >Delete</button>
+        <button onClick={() => {handleDelete(word._id)}}>Delete</button>
         </>
 
       ) }

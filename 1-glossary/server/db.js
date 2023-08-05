@@ -34,12 +34,18 @@ let Words = mongoose.model('Words', wordsSchema);
 
 // Save the words into the database
 let addWord = (words) => {
-  Words.insertMany(words);
+  return Words.insertMany(words);
 }
 
 // Delete
-let deleteWord = (word) => {
-  Words.deleteOne({word: word});
+let deleteWord = (id) => {
+  console.log(id);
+  return Words.findOneAndRemove({_id: id}).exec();
+}
+
+let updateWord = (id, newWordObj) => {
+  return Words.findOneAndUpdate({_id: id}, newWordObj, {new: true});
+
 }
 
 
@@ -47,4 +53,5 @@ module.exports.Words = Words;
 module.exports.connectToDatabase = connectToDatabase;
 module.exports.addWord = addWord;
 module.exports.deleteWord = deleteWord;
+module.exports.updateWord = updateWord;
 

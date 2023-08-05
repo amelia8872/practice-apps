@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const path = require("path");
-const {connectToDatabase, Words, addWord} = require("./db.js");
+const {connectToDatabase, Words, addWord,deleteWord,updateWord} = require("./db.js");
 const db = require("./db.js");
 
 
@@ -39,9 +39,43 @@ app.get('/words', (req, res) => {
     })
 })
 
-app.delete('/words', (req, res) => {
-  Words.deleteOne({word: req.body.word});
-  res.end();
+app.get('/search/:query', (req, res) => {
+  const searchQuery = req.params.query;
+  console.log(searchQuery);
+  Words.find({word: req.params.query})
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      console.log('Error searching words:', err);
+      res.status(500).send('Internal server error');
+    });
+})
+
+app.delete('/words/:id', (req, res) => {
+  const id = req.params.id;
+
+  deleteWord(id)
+    .then(() => {
+      res.status(204).end();
+    })
+    .catch((err) => {
+      res.status(500).send('Error deleting word');
+    });
+})
+
+app.put('/words/:id', (req, res) => {
+  console.log(req.body);
+  const id = req.params.id;
+
+  updateWord(id, req.body)
+  .then(() => {
+    res.status(204).end();
+  })
+  .catch((err) => {
+    res.status(500).send('Error updating word');
+  });
+
 })
 
 

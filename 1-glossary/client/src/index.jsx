@@ -13,6 +13,8 @@ const App = () => {
 
 
   const [words, setWords] = useState([]);
+  const [newSearch, setNewSearch] = useState('');
+  const [searchResult, setSearchResult] = useState({});
 
 
   const addWord = (newWord, newDef) => {
@@ -28,21 +30,47 @@ const App = () => {
     })
   }
 
-  // const handleDelete = (word.word) => {
-  //   axios.delete('http://localhost:3000/words')
-  //     .then(() => {
-  //       fetchWords();
-  //     })
-  //     .catch((err) => {
-  //       console.log('Error deleting word:', err)
-  //     })
-  // }
+  const handleDelete = (id) => {
+    axios.delete(`http://localhost:3000/words/${id}`)
+      .then(() => {
+        fetchWords();
+      })
+      .catch((err) => {
+        console.log('Error deleting word:', err)
+      })
+  }
+
+  const editWord = (id, newWordObj) => {
+    axios.put(`http://localhost:3000/words/${id}`, newWordObj)
+      .then(() => {
+        fetchWords();
+      })
+      .catch((err) => {
+        console.log('Error editing word:', err);
+      })
+
+  }
+
+  const searchWord= (e) => {
+
+    e.preventDefault();
+    console.log(newSearch);
+    let lowerCaseSearch = newSearch.toLowerCase();
+    axios.get(`/search/${lowerCaseSearch}`)
+      .then(response => {
+        console.log(response.data[0]);
+        setSearchResult(response.data[0]);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+}
 
 
   const fetchWords = () => {
     axios.get('http://localhost:3000/words')
     .then( (res) => {
-      console.log(res.data);
+      // console.log(res.data);
       setWords(res.data);
     })
     .catch((err) => {
@@ -54,28 +82,14 @@ const App = () => {
   //Runs only on the first render
   useEffect(() => {fetchWords();}, []);
 
-    // //client should post request to server
-  // const fetchWords = () => {
-  //   $.ajax({
-  //     type: 'GET',
-  //     url: "http://localhost:3000/words",
-  //     success: (data) => {
-  //       setWords(data);
-  //     },
-  //     error: () => {
-  //       console.log("GET error");
-  //     }
-
-  //   });
-  // };
 
 
   return (
     <div className="App">
       <h1>My Glossary List</h1>
-      <WordList words = {words} />
-      <WordForm />
-      <Search />
+      <WordList words = {words} handleDelete={handleDelete} editWord={editWord} />
+      <WordForm addWord={addWord} />
+      <Search searchWord={searchWord} newSearch = {newSearch} setNewSearch={setNewSearch} searchResult={searchResult} />
     </div>
 
   )
